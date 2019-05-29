@@ -9,13 +9,13 @@ class BookShelfChanger extends React.Component {
     }
     onChange = (event) => {
         event.preventDefault();
-        const { book, onChange } = this.props;
+        const { book, onShelfChange } = this.props;
         const shelf = event.target.value;
         this.setState((prevState) => {
             prevState.defaultValue = shelf;
             return prevState;
         });
-        onChange({ book, shelf });
+        onShelfChange({ book, shelf });
     }
     render() {
         const { options, defaultValue } = this.state;
@@ -37,7 +37,7 @@ class BookShelfChanger extends React.Component {
 
 BookShelfChanger.propTypes = {
     book: PropTypes.object.isRequired,
-    onChange: PropTypes.func.isRequired,
+    onShelfChange: PropTypes.func.isRequired,
     defaultValue: PropTypes.string.isRequired
 }
 

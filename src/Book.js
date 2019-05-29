@@ -10,7 +10,7 @@ function Book(props) {
         <div className="book">
             <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${thumbnail})` }}></div>
-                <BookShelfChanger book={book} defaultValue={defaultValue} onChange={onShelfChange} />
+                <BookShelfChanger book={book} defaultValue={defaultValue} onShelfChange={onShelfChange} />
             </div>
             <div className="book-title">{title}</div>
             <div className="book-authors">{authors}</div>
