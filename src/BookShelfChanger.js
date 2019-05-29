@@ -8,19 +8,19 @@ class BookShelfChanger extends React.Component {
     }
     onChange = (event) => {
         event.preventDefault();
-        const {book, onChange} = this.props;
+        const { book, onChange } = this.props;
         const shelf = event.target.value;
-        onChange({book, shelf});
+        onChange({ book, shelf });
     }
-    render () {
-        const {defaultValue} = this.props;
-        const {options} = this.state;
+    render() {
+        const { defaultValue } = this.props;
+        const { options } = this.state;
         return (
             <div className="book-shelf-changer">
                 <select value={defaultValue} onChange={this.onChange}>
                     <option key='move' value='move' disabled>Move to...</option>
                     {options.map((option) => {
-                        const {value, text} = option;
+                        const { value, text } = option;
                         return (
                             <option key={value} value={value}>{text}</option>
                         )

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 import ChangerOptions from './ChangerOptions'
 
-function BookList (props) {
-    const {books, onShelfChange} = props;
+function BookList(props) {
+    const { books, onShelfChange } = props;
     const options = new ChangerOptions().valid;
     const shelfs = (shelf) => {
         return books.filter((b) => shelf === b.shelf);
@@ -17,11 +17,11 @@ function BookList (props) {
     return (
         <div className="list-books-content">
             {booksShelfs.map((bookShelf) => {
-                const {books, title, id} = bookShelf;
+                const { books, title, id } = bookShelf;
                 return (
-                <div key={id}>
-                    <BookShelf books={books} title={title} onShelfChange={onShelfChange} />
-                </div>
+                    <div key={id}>
+                        <BookShelf books={books} title={title} onShelfChange={onShelfChange} />
+                    </div>
                 )
             })
             }
@@ -30,7 +30,7 @@ function BookList (props) {
 }
 
 BookList.propTypes = {
-	books: PropTypes.array.isRequired,
+    books: PropTypes.array.isRequired,
     onShelfChange: PropTypes.func.isRequired,
 }
 

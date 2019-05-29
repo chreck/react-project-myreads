@@ -4,8 +4,8 @@ import BookList from './BookList'
 import OpenSearch from './OpenSearch'
 
 class Dashboard extends React.Component {
-    render () {
-        const {books, onShelfChange} = this.props;
+    render() {
+        const { books, onShelfChange } = this.props;
         return (
             <div className="list-books">
                 <div className="list-books-title">

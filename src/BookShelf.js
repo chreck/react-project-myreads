@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Book from './Book'
 
-function BookShelf (props) {
-    const {books, title, onShelfChange} = props;
+function BookShelf(props) {
+    const { books, title, onShelfChange } = props;
     return (
         <div className="bookshelf">
             <h2 className="bookshelf-title">{title}</h2>
@@ -14,12 +14,13 @@ function BookShelf (props) {
                             defaultValue: book.shelf,
                             onShelfChange,
                         };
-                        const {id} = book;
+                        const { id } = book;
                         return (
                             <li key={id}>
                                 <Book book={book} changer={changer} />
                             </li>
-                        )}
+                        )
+                    }
                     )}
                 </ol>
             </div>
