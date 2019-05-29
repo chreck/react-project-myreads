@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 
 function BookList (props) {
-    const {books, changerOptions, onChange} = props;
+    const {books, changerOptions, onShelfChange} = props;
     const shelfs = (shelf) => {
         return books.filter((b) => shelf === b.shelf);
     };
@@ -18,7 +18,7 @@ function BookList (props) {
                 const {books, title, id} = bookShelf;
                 return (
                 <div key={id}>
-                    <BookShelf books={books} changerOptions={changerOptions} title={title} onChange={onChange} />
+                    <BookShelf books={books} changerOptions={changerOptions} title={title} onShelfChange={onShelfChange} />
                 </div>
                 )
             })
@@ -30,7 +30,7 @@ function BookList (props) {
 BookList.propTypes = {
 	books: PropTypes.array.isRequired,
     changerOptions: PropTypes.array.isRequired,
-    onChange: PropTypes.func.isRequired,
+    onShelfChange: PropTypes.func.isRequired,
 }
 
 export default BookList

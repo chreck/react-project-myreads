@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Book from './Book'
 
 function BookShelf (props) {
-    const {books, changerOptions, title, onChange} = props;
+    const {books, changerOptions, title, onShelfChange} = props;
     return (
         <div className="bookshelf">
             <h2 className="bookshelf-title">{title}</h2>
@@ -13,7 +13,7 @@ function BookShelf (props) {
                         const changer = {
                             options: changerOptions,
                             defaultValue: book.shelf,
-                            onChange,
+                            onShelfChange,
                         };
                         const {id} = book;
                         return (
@@ -32,7 +32,7 @@ BookShelf.propTypes = {
     books: PropTypes.array.isRequired,
     changerOptions: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
+    onShelfChange: PropTypes.func.isRequired,
 }
 
 export default BookShelf

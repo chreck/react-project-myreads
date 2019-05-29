@@ -5,12 +5,12 @@ import BookShelfChanger from './BookShelfChanger'
 function Book (props) {
     const {changer, book} = props;
     const {thumbnail, title, authors} = book;
-    const {options, defaultValue, onChange} = changer;
+    const {options, defaultValue, onShelfChange} = changer;
     return (
         <div className="book">
             <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${thumbnail})`}}></div>
-                <BookShelfChanger bookId={book.id} options={options} defaultValue={defaultValue} onChange={onChange} />
+                <BookShelfChanger bookId={book.id} options={options} defaultValue={defaultValue} onChange={onShelfChange} />
             </div>
             <div className="book-title">{title}</div>
             <div className="book-authors">{authors}</div>

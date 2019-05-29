@@ -6,7 +6,7 @@ class BookShelfChanger extends React.Component {
         event.preventDefault();
         const {bookId, onChange} = this.props;
         const shelf = event.target.value;
-        onChange(bookId, shelf);
+        onChange({bookId, shelf});
     }
     render () {
         const {options, defaultValue} = this.props;
