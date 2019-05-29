@@ -13,7 +13,7 @@ class BooksApp extends React.Component {
   transform = (origBook) => {
     return {
       id: origBook.id,
-      thumbnail: origBook.imageLinks.thumbnail,
+      thumbnail: (origBook.imageLinks && origBook.imageLinks.thumbnail) ? origBook.imageLinks.thumbnail : '',
       title: origBook.title,
       authors: origBook.authors ? origBook.authors.join(' | ') : '',
       shelf: origBook.shelf || 'none'

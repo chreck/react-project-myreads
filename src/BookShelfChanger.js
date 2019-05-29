@@ -4,17 +4,21 @@ import ChangerOptions from './ChangerOptions'
 
 class BookShelfChanger extends React.Component {
     state = {
-        options: new ChangerOptions().all
+        options: new ChangerOptions().all,
+        defaultValue: this.props.defaultValue
     }
     onChange = (event) => {
         event.preventDefault();
         const { book, onChange } = this.props;
         const shelf = event.target.value;
+        this.setState((prevState) => {
+            prevState.defaultValue = shelf;
+            return prevState;
+        });
         onChange({ book, shelf });
     }
     render() {
-        const { defaultValue } = this.props;
-        const { options } = this.state;
+        const { options, defaultValue } = this.state;
         return (
             <div className="book-shelf-changer">
                 <select value={defaultValue} onChange={this.onChange}>
