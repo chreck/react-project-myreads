@@ -18,7 +18,10 @@ function ChangerOptions () {
           text: 'None',
         }
       ];
-    return options;
+    return {
+        all: options,
+        valid: options.filter((option) => {return option.value !== 'none'})
+    };
 }
 
 export default ChangerOptions

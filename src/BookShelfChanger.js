@@ -1,15 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ChangerOptions from './ChangerOptions'
 
 class BookShelfChanger extends React.Component {
+    state = {
+        options: new ChangerOptions().all
+    }
     onChange = (event) => {
         event.preventDefault();
-        const {bookId, onChange} = this.props;
+        const {book, onChange} = this.props;
         const shelf = event.target.value;
-        onChange({bookId, shelf});
+        onChange({book, shelf});
     }
     render () {
-        const {options, defaultValue} = this.props;
+        const {defaultValue} = this.props;
+        const {options} = this.state;
         return (
             <div className="book-shelf-changer">
                 <select value={defaultValue} onChange={this.onChange}>
@@ -27,10 +32,9 @@ class BookShelfChanger extends React.Component {
 }
 
 BookShelfChanger.propTypes = {
-    bookId: PropTypes.string.isRequired,
-	options: PropTypes.array.isRequired,
-    defaultValue: PropTypes.string.isRequired,
+    book: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    defaultValue: PropTypes.string.isRequired
 }
 
 export default BookShelfChanger

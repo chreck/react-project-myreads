@@ -10,6 +10,16 @@ class BooksApp extends React.Component {
     books: [],
   }
 
+  transform = (origBook) => {
+    return {
+      id: origBook.id,
+      thumbnail: origBook.imageLinks.thumbnail,
+      title: origBook.title,
+      authors: origBook.authors ? origBook.authors.join(' | ') : '',
+      shelf: origBook.shelf || 'none'
+    }
+  }
+
   componentDidMount = () => {
     BooksAPI.getAll().then((books) => {
       // allowAnonLogging: true
@@ -37,28 +47,27 @@ class BooksApp extends React.Component {
       // subtitle: "A Complete Introduction"
       // title: "The Linux Command Line"
       this.setState((prevState) => {
-        prevState.books = books.map((book) => ({
-          id: book.id,
-          thumbnail: book.imageLinks.thumbnail,
-          title: book.title,
-          authors: book.authors.join(' | '),
-          shelf: book.shelf
-        }))
+        prevState.books = books.map((book) => this.transform(book))
         return prevState;
       })
     });
   }
 
   onShelfChange = (change) => {
-      const {bookId, shelf} = change;
+      const {book, shelf} = change;
       this.setState((prevState) => {
-          const index = prevState.books.findIndex((book)=>{
-              return bookId === book.id;
+          const index = prevState.books.findIndex((b)=>{
+              return book.id === b.id;
           });
-          prevState.books[index].shelf = shelf;
+          if(index === -1) {
+            book.shelf = shelf;
+            prevState.books.unshift(book);
+          } else {
+            prevState.books[index].shelf = shelf;
+          }
           return prevState;
       });
-      BooksAPI.update({id: bookId}, shelf);
+      BooksAPI.update({id: book.id}, shelf);
   }
 
   render() {
@@ -66,11 +75,11 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
           <Route exact path='/search' render={() => (
-            <Search onShelfChange={(change) => {this.onShelfChange(change)}} />
+            <Search onShelfChange={this.onShelfChange} transform={this.transform} />
           )}
           />
           <Route exact path='/' render={() => (
-            <Dashboard books={books} onShelfChange={(change) => {this.onShelfChange(change)}} />
+            <Dashboard books={books} onShelfChange={this.onShelfChange} />
           )} />
       </div>
     )
