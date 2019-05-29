@@ -15,6 +15,7 @@ class Search extends React.Component {
     state = {
         books: [],
         value: '',
+        currentBooks: this.props.books,
     }
 
     isValueEmpty = () => this.state.value === '';
@@ -27,11 +28,22 @@ class Search extends React.Component {
     }
 
     fetch = () => {
+        const { transform } = this.props;
         if (this.isValueEmpty() === false) {
             BooksAPI.search(this.state.value).then((books) => {
                 if (books.error === undefined && this.isValueEmpty() === false) {
                     this.setState((prevState) => {
-                        prevState.books = books;
+                        const booksShelfSelected = books.map((b) => {
+                            b = transform(b);
+                            const filtered = this.state.currentBooks.filter((cb) => {
+                                return cb.id === b.id
+                            });
+                            if(filtered.length > 0 ) {
+                                b = filtered[0]
+                            }
+                            return b;
+                        });
+                        prevState.books = booksShelfSelected;
                         return prevState;
                     });
                 } else {
@@ -61,7 +73,7 @@ class Search extends React.Component {
 
     render() {
         const { value, books } = this.state;
-        const { onShelfChange, transform } = this.props;
+        const { onShelfChange } = this.props;
         return (
             <div className="search-books">
                 <div className="search-books-bar">
@@ -73,7 +85,6 @@ class Search extends React.Component {
                 <div className="search-books-results">
                     <ol className="books-grid">
                         {books.map((book) => {
-                            book = transform(book);
                             const changer = {
                                 defaultValue: book.shelf,
                                 onShelfChange,
@@ -95,7 +106,8 @@ class Search extends React.Component {
 
 Search.propTypes = {
     onShelfChange: PropTypes.func.isRequired,
-    transform: PropTypes.func.isRequired
+    transform: PropTypes.func.isRequired,
+    books: PropTypes.array.isRequired
 };
 
 export default Search
