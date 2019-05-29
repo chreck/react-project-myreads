@@ -15,7 +15,7 @@ class BooksApp extends React.Component {
       id: origBook.id,
       thumbnail: (origBook.imageLinks && origBook.imageLinks.thumbnail) ? origBook.imageLinks.thumbnail : '',
       title: origBook.title,
-      authors: origBook.authors ? origBook.authors.join(' | ') : '',
+      authors: origBook.authors && origBook.authors.length > 0 ? origBook.authors.join(' | ') : '',
       shelf: origBook.shelf || 'none'
     }
   }
