@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import * as BooksAPI from './BooksAPI'
 import BookList from './BookList'
 import OpenSearch from './OpenSearch'
@@ -52,21 +51,16 @@ class Dashboard extends React.Component {
 
     render () {
         const {options, books} = this.state;
-        const {onAddClick} = this.props;
         return (
             <div className="list-books">
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
                 <BookList books={books} changerOptions={options} onChange={()=>{}}></BookList>
-                <OpenSearch onAddClick={onAddClick} />
+                <OpenSearch />
             </div>
         )
     }
-}
-
-Dashboard.propTypes = {
-    onAddClick: PropTypes.func.isRequired
 }
 
 export default Dashboard

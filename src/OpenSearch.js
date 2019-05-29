@@ -1,17 +1,13 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import {withRouter} from 'react-router-dom'
 
 function OpenSearch (props) {
-    const {onAddClick} = props;
+    const {history} = props;
     return (
         <div className="open-search">
-            <button onClick={onAddClick}>Add a book</button>
+            <button onClick={() => {history.push('/search')}}>Add a book</button>
         </div>
     )
 }
 
-OpenSearch.propTypes = {
-    onAddClick: PropTypes.func.isRequired
-}
-
-export default OpenSearch
+export default withRouter(OpenSearch)
