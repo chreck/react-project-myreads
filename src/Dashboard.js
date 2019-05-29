@@ -49,6 +49,17 @@ class Dashboard extends React.Component {
         });
     }
 
+    onChange = (bookId, shelf) => {
+        this.setState((prevState) => {
+            const index = prevState.books.findIndex((book)=>{
+                return bookId === book.id;
+            });
+            prevState.books[index].shelf = shelf;
+            return prevState;
+        });
+        BooksAPI.update({id: bookId}, shelf);
+    }
+
     render () {
         const {options, books} = this.state;
         return (
@@ -56,7 +67,7 @@ class Dashboard extends React.Component {
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
-                <BookList books={books} changerOptions={options} onChange={()=>{}}></BookList>
+                <BookList books={books} changerOptions={options} onChange={this.onChange}></BookList>
                 <OpenSearch />
             </div>
         )
