@@ -1,6 +1,6 @@
 # MyReads Project
 
-Update your current and next readings in the lists. If you select the book to none it is removed from the list. But you can add it over the + sign on the bottom right. Search for the iteam and add it to a category.
+Update your current and next readings in the lists. If you select the book to none it is removed from the list. But you can add it over the + sign on the bottom right. Search for the item and add it to a category.
 
 ## TL;DR
 
